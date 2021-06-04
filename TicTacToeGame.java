@@ -11,6 +11,7 @@ class TicTacToeGame {
 
         createBoard();
 		userChoice();
+		showBoard();
        
     }
 
@@ -49,3 +50,21 @@ class TicTacToeGame {
         }
         System.out.println("The Player is : " + player + " and The Computer is :    " + computer);
     }
+
+ /**
+     * UC-3 Show Board method to display the current Board
+     */
+    public static void showBoard() {
+
+        System.out.println("\n\n\t\t" + gameBoard[1] + "   | " + gameBoard[2] + "  | " + gameBoard[3]);
+        System.out.println(" \t\t    |    |   ");
+        System.out.println(" \t\t ___|____|___ ");
+        System.out.println("\n\n\t\t" + gameBoard[4] + "   | " + gameBoard[5] + "  | " + gameBoard[6]);
+        System.out.println(" \t\t    |    |   ");
+        System.out.println(" \t\t ___|____|___ ");
+        System.out.println("\n\n\t\t" + gameBoard[7] + "   | " + gameBoard[8] + "  | " + gameBoard[9]);
+        System.out.println(" \t\t    |    |   ");
+        System.out.println(" \t\t    |    |   ");
+
+	}
+	}
