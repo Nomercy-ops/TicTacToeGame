@@ -3,14 +3,16 @@ import java.util.Scanner;
 
 class TicTacToeGame {
 
-    static char gameBoard[] = new char[10];
+        static char gameBoard[] = new char[10];
 	static char playerLetter = ' ';
-    static char computerLetter = ' ';
+        static char computerLetter = ' ';
 	private static int playerPosition = 0;
+	private static int computerPosition = 0;
 	private static int nonEmptyBlockCount = 1;
+	private static int computerWinMove = 0;
 	
 	//boolean Variables
-    private static boolean whoPlaysFirst = false;
+    	private static boolean whoPlaysFirst = false;
 	private static boolean someOneWon = false;
 	
     public static void main(String[] args) {
@@ -174,4 +176,28 @@ class TicTacToeGame {
         } //End of a While loop
     }
 	
-	}
+	/**
+     * UC-8 Method for computer to make a move to a desired location in the game.
+     * it also calls a function win or block move to win or to block the other from winning 
+     */
+    private static void computerMove() {
+        computerWinMove = 0;
+        System.out.println("Computer is Playing ");
+        try {
+            sleep(1000);  // putting threads into sleep for 1 ms.
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        winOrBlockMove(computerLetter);
+        winOrBlockMove(playerLetter);
+        checkCorners();
+        checkMiddle();
+        checkRemainingSides();
+
+        whoPlaysFirst = true;
+    }
+        whoPlaysFirst = false;
+    }
+
+	
+}
