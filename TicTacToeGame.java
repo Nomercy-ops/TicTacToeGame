@@ -275,4 +275,39 @@ class TicTacToeGame {
             } // end of for loop
         } // end of if statement
     }
+	
+	 /**
+     * UC-11 Method for checking middle or center of board and take that blank
+     * spot if available This method is if there is no blank spot left on the
+     * corner
+     */
+    
+    private static void checkMiddle() {
+        int middle = 5;
+        if ((computerWinMove == 0) && (gameBoard[middle] == ' ')) {
+            computerPosition = middle;
+            gameBoard[computerPosition] = computerLetter;
+            computerWinMove = 1;
+        }
+    }
+    
+     /**
+     * UC-11 Method for checking all remaining sides of board 
+     * 
+     */
+     private static void checkRemainingSides() {
+        if (computerWinMove == 0) {
+            for (int i = 2; i < 9; i += 2) {
+                if (gameBoard[i] == ' ') {
+                    computerPosition = i;
+                    gameBoard[computerPosition] = computerLetter;
+                    computerWinMove = 1;
+                    break;
+                }
+            } // end of for loop
+        } // end of if statement
+    }
+    
+	
+	
 }
