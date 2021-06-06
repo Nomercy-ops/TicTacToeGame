@@ -7,9 +7,11 @@ class TicTacToeGame {
 	static char playerLetter = ' ';
     static char computerLetter = ' ';
 	private static int playerPosition = 0;
+	private static int nonEmptyBlockCount = 1;
 	
 	//boolean Variables
     private static boolean whoPlaysFirst = false;
+	private static boolean someOneWon = false;
 	
     public static void main(String[] args) {
 
@@ -99,6 +101,77 @@ class TicTacToeGame {
      */
     private static boolean checkFreeSpace(int position) {
         return !(gameBoard[position] == 'X' || gameBoard[position] == 'O');
+    }
+	
+	
+	 /**
+     * UC-7 Method for checking Horizontal and vertical Game Board Winner
+     * Checking all the horizontal and vertical possible combinations for winner
+     *
+     * @param symbol for getting Letter X or O
+     * @param columnValues getting int values from check won methods
+     * @param rowValues getting int values from check won methods
+     *
+     */
+    private static void checkHorizontalVerticalWon(char symbol, int columnValues, int rowValues) {
+
+        int position = 1;//taking position variable as an index  value of game board
+        int loopCounter = 1;
+        while (loopCounter <= 3) {
+            if ((gameBoard[position] == gameBoard[position + rowValues]) && (gameBoard[position + rowValues]) == (gameBoard[position + rowValues + rowValues]) && (gameBoard[position + rowValues + rowValues]) == symbol) {
+                showBoard();
+                System.out.println("HURRAY!!!" + symbol + " wins ");
+                someOneWon = true;
+                break;
+            } else {
+                position += columnValues;
+            }
+            loopCounter++;
+        } // End of while Loop
+    }
+
+    /**
+     * UC-7 Method for checking Diagonal Game Board Winner Checking all the
+     * diagonal position of a  wins
+     *
+     * @param symbol is used to get X or O letter
+     */
+    private static void checkDiagonalWinner(char symbol) {
+        int position = 1; //taking position variable as an index  value of game board
+        int loopCounter = 1;
+        while (loopCounter <= 2) {
+            if ((gameBoard[position] == gameBoard[position + 4]) && (gameBoard[position + 4]) == (gameBoard[position + 8]) && (gameBoard[position + 8]) == symbol) {
+                showBoard();
+                System.out.println("HURRAY!!!" + symbol + " wins ");
+                someOneWon = true;
+                break;
+            } else if ((gameBoard[position + 2] == gameBoard[position + 4]) && (gameBoard[position + 4]) == (gameBoard[position + 6]) && (gameBoard[position + 6]) == symbol) {
+                showBoard();
+                System.out.println("HURRAY!!!" + symbol + " wins ");
+                someOneWon = true;
+                break;
+            }
+            loopCounter++;
+        } // End of while Loop
+    }
+
+    /**
+     * UC-7 Method for checking a game has been tie or not.
+     * game will be tie if there are no other options left to move.
+     */
+    private static void checkGameTie() {
+        
+        while (gameBoard[nonEmptyBlockCount] != ' ') {
+            if (nonEmptyBlockCount == 9) {
+                showBoard();
+                System.out.println("UhUho!!!! Game Is Tie");
+                someOneWon = true;
+                computerWinMove = 1;
+                break;
+            } else {
+                nonEmptyBlockCount++;
+            }
+        } //End of a While loop
     }
 	
 	}
