@@ -1,9 +1,17 @@
+/**
+ * 
+ * @author Rikesh Chhetri
+ * @version 1.0
+ * @Created_on: 06.06.21
+ * 
+ *  purpose:  Tic Tac Toe program game where  player and computer can play the game.
+ *
+ */
+
 package com.bridgelabz;
 import java.util.Scanner;
 
 class TicTacToeGame {
-
-    static char gameBoard[] = new char[10];
 	static char playerLetter = ' ';
     static char computerLetter = ' ';
 	private static int playerPosition = 0;
@@ -14,14 +22,16 @@ class TicTacToeGame {
 	
 	//boolean Variables
     private static boolean whoPlaysFirst = false;
-	private static boolean someOneWon = false;
-	
+	  private static boolean someOneWon = false;
+	 
+  *
+    Main method for execution of programs
+    */
     public static void main(String[] args) {
-
-        createBoard();
-		userChoice();
-		showBoard();
-       
+        TicTacToeGame tictactoe = new TicTacToeGame();
+        tictactoe.startGame();
+        tictactoe.anotherGame();
+    
     }
 
     /**
