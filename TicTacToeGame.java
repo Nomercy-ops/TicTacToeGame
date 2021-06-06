@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 class TicTacToeGame {
 
-        static char gameBoard[] = new char[10];
+    static char gameBoard[] = new char[10];
 	static char playerLetter = ' ';
-        static char computerLetter = ' ';
+    static char computerLetter = ' ';
 	private static int playerPosition = 0;
 	private static int computerPosition = 0;
 	private static int nonEmptyBlockCount = 1;
@@ -13,7 +13,7 @@ class TicTacToeGame {
 	private static int computerWinMove = 0;
 	
 	//boolean Variables
-    	private static boolean whoPlaysFirst = false;
+    private static boolean whoPlaysFirst = false;
 	private static boolean someOneWon = false;
 	
     public static void main(String[] args) {
@@ -27,6 +27,7 @@ class TicTacToeGame {
     /**
      * UC-1 for creating Board for tic tac toe game
      */
+	 
     public static void createBoard() {
         char gameBoardElement[] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
         int i;
@@ -40,6 +41,7 @@ class TicTacToeGame {
      * UC-2 Method to allow the player or computer choose a letter X or O through toss
 	  getting Random values between 1 or 2 for who will play first 
      */
+	 
     private static void letterAssignment() {
 
         // 
@@ -80,6 +82,7 @@ class TicTacToeGame {
      * UC-4 Method for user to make a move to a desired location in the board
      * checks before moving if the board index is free or not
      */
+	 
     private static void playerMove() {
 
         Scanner scanner = new Scanner(System.in);
@@ -116,6 +119,7 @@ class TicTacToeGame {
      * @param rowValues getting int values from check won methods
      *
      */
+	 
     private static void checkHorizontalVerticalWon(char symbol, int columnValues, int rowValues) {
 
         int position = 1;//taking position variable as an index  value of game board
@@ -139,6 +143,7 @@ class TicTacToeGame {
      *
      * @param symbol is used to get X or O letter
      */
+	 
     private static void checkDiagonalWinner(char symbol) {
         int position = 1; //taking position variable as an index  value of game board
         int loopCounter = 1;
@@ -162,6 +167,7 @@ class TicTacToeGame {
      * UC-7 Method for checking a game has been tie or not.
      * game will be tie if there are no other options left to move.
      */
+	 
     private static void checkGameTie() {
         
         while (gameBoard[nonEmptyBlockCount] != ' ') {
@@ -181,6 +187,7 @@ class TicTacToeGame {
      * UC-8 Method for computer to make a move to a desired location in the game.
      * it also calls a function win or block move to win or to block the other from winning 
      */
+	 
     private static void computerMove() {
         computerWinMove = 0;
         System.out.println("Computer is Playing ");
@@ -207,6 +214,7 @@ class TicTacToeGame {
      *
      * @param symbol for getting letter X or O
      */
+	 
     private static void winOrBlockMove(char symbol) {
         //assigning values as per moves checks for row,column,leftDiagonal and rightDiagonal  
         int rowValue = 1;
@@ -260,6 +268,7 @@ class TicTacToeGame {
      * UC-10 Method for checking available free corners and take that spot.
      * method is used to traverse the game board corner is if available then move there
      */
+	 
     private static void checkCorners() {
         if (computerWinMove == 0) {
             for (int i = 1; i <= 9; i += 2) {
@@ -295,6 +304,7 @@ class TicTacToeGame {
      * UC-11 Method for checking all remaining sides of board 
      * 
      */
+	 
      private static void checkRemainingSides() {
         if (computerWinMove == 0) {
             for (int i = 2; i < 9; i += 2) {
@@ -309,5 +319,48 @@ class TicTacToeGame {
     }
     
 	
+	
+	   /**
+     * UC-12 Method for Starting a game. 
+     * This method is responsible starting of a game till player or computer wins.
+     * This method also initialize game board display game board after every moves. 
+     */
+    
+    private  void startGame() {
+        System.out.println(" ************ WELCOME TO TIC TAC TOE GAME ************ ");
+        createBoard();
+        letterAssignment();
+
+        while (someOneWon == false) {
+            showBoard();
+            if (whoPlaysFirst == true) {
+                playerMove();
+                checkWon(playerLetter);
+                checkGameTie();
+            } else {
+                computerMove();
+                checkWon(computerLetter);
+                checkGameTie();
+            }
+        } // end of while
+    }
+	
+	
+	 /**
+     *
+     * UC-12 Method is used for calling checkHorizontalVerticalWon method and checkDiagonalWinner method.
+     * This method is call by start game method.
+	 * This method is calling checkDiagonalWinner and checkHorizontalVerticalWon method for getting win move.
+     * @param symbol is used to get X or O letter.
+     */
+	 
+    private static void checkWon(char symbol) {
+        int rowValue = 1;
+        int columnValue = 3;
+
+        checkHorizontalVerticalWon(symbol, columnValue, rowValue);
+        checkHorizontalVerticalWon(symbol, rowValue, columnValue);
+        checkDiagonalWinner(symbol);
+    }
 	
 }
