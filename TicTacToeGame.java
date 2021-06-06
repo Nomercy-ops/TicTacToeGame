@@ -91,4 +91,15 @@ class TicTacToeGame {
         whoPlaysFirst = false;
     }
 	
+	/**
+     * UC-5 Method for checking free space in board
+     *
+     * @param position to get player input
+     * @return true or false
+     *
+     */
+    private static boolean checkFreeSpace(int position) {
+        return !(gameBoard[position] == 'X' || gameBoard[position] == 'O');
+    }
+	
 	}
