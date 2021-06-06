@@ -4,8 +4,8 @@ import java.util.Scanner;
 class TicTacToeGame {
 
     static char gameBoard[] = new char[10];
-	static char player = ' ';
-    static char computer = ' ';
+	static char playerLetter = ' ';
+    static char computerLetter = ' ';
 	private static int playerPosition = 0;
 	
 	//boolean Variables
@@ -32,27 +32,26 @@ class TicTacToeGame {
     }
 	
 	/**
-     * UC-2 Method to allow the player to choose a letter X or O
+     * UC-2 Method to allow the player or computer choose a letter X or O through toss
+	  getting Random values between 1 or 2 for who will play first 
      */
-    public static void userChoice() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 1 for 'X' or 2 for 'O':");
-        int choice = scanner.nextInt();
+    private static void letterAssignment() {
 
-        switch (choice) {
-            case 1:
-                player = 'X';
-                computer = 'O';
-                break;
-            case 2:
-                player = 'O';
-                computer = 'X';
-                break;
-            default:
-                System.out.println("Enter a Correct Input");
-                break;
+        // 
+        int firstPlay = (int) (Math.random() * 2 + 1);
+        if (firstPlay == 1) {
+            whoPlaysFirst = true;
+            playerLetter = 'X';
+            computerLetter = 'O';
+            System.out.println("Player Symbol is :  X " + " Computer Symbol is : O ");
+            System.out.println("Player Plays First");
+        } else {
+            playerLetter = 'O';
+            computerLetter = 'X';
+            System.out.println("Player Symbol is : O" + " Computer Symbol is : X ");
+            System.out.println("Computer Plays First");
         }
-        System.out.println("The Player is : " + player + " and The Computer is :    " + computer);
+
     }
 
  /**
