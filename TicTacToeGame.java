@@ -10,6 +10,7 @@ class TicTacToeGame {
 	private static int computerPosition = 0;
 	private static int nonEmptyBlockCount = 1;
 	private static int computerWinMove = 0;
+	private static int computerWinMove = 0;
 	
 	//boolean Variables
     	private static boolean whoPlaysFirst = false;
@@ -199,5 +200,60 @@ class TicTacToeGame {
         whoPlaysFirst = false;
     }
 
+
+ /**
+     * UC-9 Method for checking Opponent win moves then play to block it
+     * checking all the possible winning moves
+     *
+     * @param symbol for getting letter X or O
+     */
+    private static void winOrBlockMove(char symbol) {
+        //assigning values as per moves checks for row,column,leftDiagonal and rightDiagonal  
+        int rowValue = 1;
+        int columnValue = 3;
+        int leftDiagonalValue = 4;
+        int rightDiagonalValue = 2;
+
+        //sending values to check winning move method for computer moves calculation
+        checkWinningMove(rowValue, symbol, columnValue);
+        checkWinningMove(columnValue, symbol, rowValue);
+        checkWinningMove(leftDiagonalValue, symbol, 0);
+        checkWinningMove(rightDiagonalValue, symbol, 0);
+
+    }
+	
+	/**
+     * UC-9 Method for checking Winning move of a computer or player.
+	   This method is call from win or block move method
+     * @param symbol for getting Letter X or O
+     * @param columnValues getting int values from win or block move methods
+     * @param rowValues getting int values from win or block move methods
+     *
+     */
+	
+	 private static void checkWinningMove(int rowValues, char symbol, int columnValues) {
+        int counter = 1;
+        if (computerWinMove == 0) {
+            for(int i = 1; i <= 3; i++) {
+                if ((gameBoard[counter] == (gameBoard[counter + rowValues + rowValues])) && (gameBoard[counter + rowValues] == ' ') && (gameBoard[counter]) == symbol) {
+                    computerPosition = counter + rowValues;
+                    gameBoard[computerPosition] = computerLetter;
+                    computerWinMove = 1;
+                    break;
+                } else if ((gameBoard[counter]) == (gameBoard[counter + rowValues]) && (gameBoard[counter + rowValues + rowValues] == ' ') && (gameBoard[counter] == symbol)) {
+                    computerPosition = counter + rowValues + rowValues;
+                    gameBoard[computerPosition] = computerLetter;
+                    computerWinMove = 1;
+                    break;
+                } else if ((gameBoard[counter + rowValues]) == (gameBoard[counter + rowValues + rowValues]) && (gameBoard[counter] == ' ') && (gameBoard[counter + rowValues] == symbol)) {
+                    computerPosition = counter;
+                    gameBoard[computerPosition] = computerLetter;
+                    computerWinMove = 1;
+                    break;
+                }
+                counter += columnValues;
+            } // end of for loop
+        } // end of if-else statement
+    }
 	
 }
