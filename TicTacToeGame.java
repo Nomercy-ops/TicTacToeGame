@@ -363,4 +363,28 @@ class TicTacToeGame {
         checkDiagonalWinner(symbol);
     }
 	
-}
+	
+	/**
+     * UC-13 Method for user to continue playing another Tic Tac Toe Game.
+     * This method give option to user whether to play another game or exit
+	 * if a user choose to play then it will call star game method for another game.
+     */
+    
+    private void anotherGame(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do You Want To Play Another Game? ");
+        System.out.println("Enter 1 To Continue Game... OR Any  Key OR Number To Exit Game.... ");
+        int userInput = scanner.nextInt();
+        if (userInput == 1) {
+            startGame();
+        } else {
+            System.out.println("GoodBye!! It Was A Good Game...");
+            System.exit(userInput);
+        }
+    }
+    
+} // end of class
+
+
+	
+
