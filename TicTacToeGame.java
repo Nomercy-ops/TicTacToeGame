@@ -6,6 +6,10 @@ class TicTacToeGame {
     static char gameBoard[] = new char[10];
 	static char player = ' ';
     static char computer = ' ';
+	private static int playerPosition = 0;
+	
+	//boolean Variables
+    private static boolean whoPlaysFirst = false;
 	
     public static void main(String[] args) {
 
@@ -67,4 +71,24 @@ class TicTacToeGame {
         System.out.println(" \t\t    |    |   ");
 
 	}
+	
+	 /**
+     * UC-4 Method for user to make a move to a desired location in the board
+     * checks before moving if the board index is free or not
+     */
+    private static void playerMove() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter number between 1 to 9 ");
+        playerPosition = scanner.nextInt();
+        if (checkFreeSpace(playerPosition) == true) {
+            gameBoard[playerPosition] = playerLetter;
+            showBoard();
+        } else {
+            System.out.println("That positon is already taken, please choose another");
+            playerMove();
+        }
+        whoPlaysFirst = false;
+    }
+	
 	}
