@@ -1,12 +1,27 @@
+/**
+ * 
+ * @author Rikesh Chhetri
+ * @version 1.0
+ * @Created_on: 06.06.21
+ * 
+ *  purpose:  Tic Tac Toe program game where  player and computer can play the game.
+ *
+ */
+
 package com.bridgelabz;
 
 class TicTacToeGame {
 
     static char gameBoard[] = new char[10];
+	
+    *
+    Main method for execution of programs
+    */
     public static void main(String[] args) {
-
-        createBoard();
-       
+        TicTacToeGame tictactoe = new TicTacToeGame();
+        tictactoe.startGame();
+        tictactoe.anotherGame();
+        
     }
 
     /**
