@@ -256,4 +256,23 @@ class TicTacToeGame {
         } // end of if-else statement
     }
 	
+	/**
+     * UC-10 Method for checking available free corners and take that spot.
+     * method is used to traverse the game board corner is if available then move there
+     */
+    private static void checkCorners() {
+        if (computerWinMove == 0) {
+            for (int i = 1; i <= 9; i += 2) {
+                if (gameBoard[i] == ' ') {
+                    computerPosition = i;
+                    gameBoard[computerPosition] = computerLetter;
+                    computerWinMove = 1;
+                    break;
+                }
+                if (i == 3) {
+                    i += 2;
+                }
+            } // end of for loop
+        } // end of if statement
+    }
 }
